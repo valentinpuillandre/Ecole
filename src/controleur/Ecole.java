@@ -7,7 +7,7 @@ public class Ecole {
 
 
 
-private C_Professeu unControleurProfesseur = new C_Professeur();
+private C_Professeur unControleurProfesseur = new C_Professeur();
 private C_Etudiant unControleurEtudiant = new C_Etudiant();
 
 

@@ -1,7 +1,10 @@
 package modele;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import com.mysql.jdbc.Statement;
 
 import controleur.Etudiant;
 import controleur.Professeur;
@@ -21,7 +24,7 @@ public class Modele {
 		
 		try {
 			uneBdd.seConnecter();
-			Statement unStat = uneBdd.getMaConnexion().createStatement();//curseur 
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
 			unStat.execute(requete);
 			unStat.close();
 			uneBdd.seDeconnecter();
@@ -40,7 +43,7 @@ public class Modele {
 		String requete = "select * from etudiant ; ";
 		try {
 			uneBdd.seConnecter();
-			Statement unStat = uneBdd.getMaConnexion().createStatement();//curseur 
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
 			ResultSet desResultats = unStat.executeQuery(requete); //fetchAll de PHP
 			//parcours des résultats ppur construire des instances de clients
 			while (desResultats.next())
@@ -68,10 +71,10 @@ public class Modele {
 	{
 		
 		Etudiant unEtudiant = null;
-		String requete = "select * from client where idetudiant = " + idetudiant + " ; ";
+		String requete = "select * from etudiant where idetudiant = " + idetudiant + " ; ";
 		try {
 			uneBdd.seConnecter();
-			Statement unStat = uneBdd.getMaConnexion().createStatement();//curseur 
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
 			ResultSet unResultat = unStat.executeQuery(requete); //fetchAll de PHP
 			//extraire un résultat et construire une seule instanc client
 			if (unResultat.next())
@@ -100,7 +103,7 @@ public class Modele {
 		
 		try {
 			uneBdd.seConnecter();
-			Statement unStat = uneBdd.getMaConnexion().createStatement();//curseur 
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
 			unStat.execute(requete);
 			unStat.close();
 			uneBdd.seDeconnecter();
@@ -120,7 +123,7 @@ public class Modele {
 		
 		try {
 			uneBdd.seConnecter(); 
-			Statement unStat = uneBdd.getMaConnexion().createStatement();//curseur 
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
 			unStat.execute(requete);
 			unStat.close();
 			uneBdd.seDeconnecter();
@@ -143,7 +146,7 @@ public class Modele {
 		
 		try {
 			uneBdd.seConnecter();
-			Statement unStat = uneBdd.getMaConnexion().createStatement();//curseur 
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
 			unStat.execute(requete);
 			unStat.close();
 			uneBdd.seDeconnecter();
@@ -163,7 +166,7 @@ public class Modele {
 		String requete = "select * from professeur ; ";
 		try {
 			uneBdd.seConnecter();
-			Statement unStat = uneBdd.getMaConnexion().createStatement();//curseur 
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
 			ResultSet desResultats = unStat.executeQuery(requete); //fetchAll de PHP
 			//parcours des résultats ppur construire des instances de Professeur
 			while (desResultats.next())
@@ -195,7 +198,7 @@ public class Modele {
 		
 		try {
 			uneBdd.seConnecter();
-			Statement unStat = uneBdd.getMaConnexion().createStatement();//curseur 
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
 			unStat.execute(requete);
 			unStat.close();
 			uneBdd.seDeconnecter();
@@ -214,7 +217,7 @@ public class Modele {
 		String requete = "select * from professeur where idprofesseur = " + idprofesseur + " ; ";
 		try {
 			uneBdd.seConnecter();
-			Statement unStat = uneBdd.getMaConnexion().createStatement();//curseur 
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
 			ResultSet unResultat = unStat.executeQuery(requete); //fetchAll de PHP
 			//extraire un résultat et construire une seule instance professeur
 			if (unResultat.next())
@@ -245,7 +248,7 @@ public class Modele {
 		
 		try {
 			uneBdd.seConnecter();
-			Statement unStat = uneBdd.getMaConnexion().createStatement();//curseur 
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
 			unStat.execute(requete);
 			unStat.close();
 			uneBdd.seDeconnecter();
