@@ -1,13 +1,13 @@
 package controleur;
 
 
-import vue.Console;
+import vue.Console; 
 
 public class Ecole {
 
 
 
-private C_Prof unControleurProf = new C_Prof();
+private C_Professeu unControleurProfesseur = new C_Professeur();
 private C_Etudiant unControleurEtudiant = new C_Etudiant();
 
 
@@ -26,7 +26,7 @@ System.out.println("Votre choix ");
 choix = Console.saisirInt();
 switch(choix)
 {
-case 1 : unControleurProf.menuProf(); break;
+case 1 : unControleurProfesseur.menuProfesseur(); break;
 case 2 : unControleurEtudiant.menuEtudiant();break;
 case 3 : break;
 case 4 : break;
