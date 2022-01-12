@@ -80,8 +80,8 @@ public class VueEtudiant {
 		System.out.println("Donner la nouvelle ligne téléphonique de l'etudiant : ");
 		unEtudiant.setTel_etudiant(Console.saisirString());
 		
-		System.out.println("Ancienne classe de l'étudiant : " + unEtudiant.getIdclasse());
-		System.out.println("Donner la nouvelle ligne téléphonique du client : ");
+		System.out.println("Ancienne classe de l'etudiant : " + unEtudiant.getIdclasse());
+		System.out.println("Donner la nouvelle classe de l'etudiant : ");
 		unEtudiant.setIdclasse(Console.saisirInt());
 		
 		return unEtudiant;

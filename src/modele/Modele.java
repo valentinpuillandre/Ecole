@@ -194,7 +194,7 @@ public class Modele {
 	
 	public static void deleteProfesseur (int  idprofesseur)
 	{
-		String requete = "delete from client where idprofesseur = " + idprofesseur + ";";
+		String requete = "delete from professeur where idprofesseur = " + idprofesseur + ";";
 		
 		try {
 			uneBdd.seConnecter();
@@ -243,7 +243,7 @@ public class Modele {
 	public static void updateProfesseur(Professeur unProfesseur)
 	{
 		String requete = "update professeur set nom_prof  = '" + unProfesseur.getNom_prof() + "', prenom_prof = '" +unProfesseur.getPrenom_prof()
-		+"',adresse_etudiant = '"+unProfesseur.getMatiere_prof() + "',email_prof = '"+ unProfesseur.getEmail_prof() + "',tel_prof = '"
+		+"',matiere_prof = '"+unProfesseur.getMatiere_prof() + "',email_prof = '"+ unProfesseur.getEmail_prof() + "',tel_prof = '"
 		+ unProfesseur.getTel_prof()+"',idmatiere ='"+unProfesseur.getIdmatiere()+"' where idprofesseur = " + unProfesseur.getIdprofesseur() + ";";
 		
 		try {

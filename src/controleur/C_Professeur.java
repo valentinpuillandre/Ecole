@@ -1,6 +1,12 @@
 package controleur;
 
+
+
 import java.util.ArrayList;
+import modele.Modele;
+import vue.Console;
+import vue.VueProfesseur;
+
 
 public class C_Professeur {
 
@@ -16,7 +22,7 @@ public class C_Professeur {
 	{
 		//on appelle le Modele pour récupérer la liste des Professeurs 
 		
-		ArrayList<Professeur> lesTechniciens = Modele.selectAllProfesseurs();
+		ArrayList<Professeur> lesProfesseurs = Modele.selectAllProfesseur();
 		//on appelle la vue pour afficher les Professeur
 		for(Professeur unProfesseur : lesProfesseurs)
 		{
