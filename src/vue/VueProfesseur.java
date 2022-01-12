@@ -68,8 +68,8 @@ public class VueProfesseur {
 		System.out.println("Donner le nouveau prénom du professeur : ");
 		unProfesseur.setPrenom_prof(Console.saisirString());
 		
-		System.out.println("Ancienne adresse professeur  : " + unProfesseur.getMatiere_prof());
-		System.out.println("Donner la nouvelle adresse du professeur : ");
+		System.out.println("Ancienne matiere du professeur  : " + unProfesseur.getMatiere_prof());
+		System.out.println("Donner la matiere du professeur : ");
 		unProfesseur.setMatiere_prof(Console.saisirString());
 		
 		System.out.println("Ancien mail professeur  : " + unProfesseur.getEmail_prof());
