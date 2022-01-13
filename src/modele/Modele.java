@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 import com.mysql.jdbc.Statement;
 
+import controleur.Classe;
 import controleur.Etudiant;
+import controleur.Matiere;
 import controleur.Professeur;
 
 
@@ -245,6 +247,237 @@ public class Modele {
 		String requete = "update professeur set nom_prof  = '" + unProfesseur.getNom_prof() + "', prenom_prof = '" +unProfesseur.getPrenom_prof()
 		+"',matiere_prof = '"+unProfesseur.getMatiere_prof() + "',email_prof = '"+ unProfesseur.getEmail_prof() + "',tel_prof = '"
 		+ unProfesseur.getTel_prof()+"',idmatiere ='"+unProfesseur.getIdmatiere()+"' where idprofesseur = " + unProfesseur.getIdprofesseur() + ";";
+		
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
+			unStat.execute(requete);
+			unStat.close();
+			uneBdd.seDeconnecter();
+
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur execution requete : " + requete);
+		}
+	}
+	/*****************************12/01/2022 by yanis **********************************/
+	/***************************** gestion des matieres *******************/
+	
+	//********************** Insérer une matiere ***************************
+	public static void insertMatiere(Matiere uneMatiere)
+	{
+		String requete = "insert into matiere values(null,'" + uneMatiere.getNom_matiere()+"');";
+		
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
+			unStat.execute(requete);
+			unStat.close();
+			uneBdd.seDeconnecter();
+
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur execution requete : " + requete);
+		}
+	}
+	
+	//******************Afficher les matieres *************************
+	
+	public static ArrayList<Matiere> selectAllMatiere()
+	{
+		ArrayList<Matiere> lesMatieres = new ArrayList<Matiere>();
+		String requete = "select * from matiere ; ";
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
+			ResultSet desResultats = unStat.executeQuery(requete); //fetchAll de PHP
+			//parcours des résultats ppur construire des instances de Matiere
+			while (desResultats.next())
+			{
+				Matiere uneMatiere = new Matiere(
+						desResultats.getInt("idmatiere"), desResultats.getString("nom_matiere")
+						);
+					lesMatieres.add(uneMatiere);
+			}
+			unStat.close();
+			uneBdd.seDeconnecter();
+
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur execution requete : " + requete);
+		}
+		return lesMatieres;
+	}
+	
+	// *******************supprimer une Matiere *************************
+	
+	public static void deleteMatiere (int  idmatiere)
+	{
+		String requete = "delete from matiere where idmatiere = " + idmatiere + ";";
+		
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
+			unStat.execute(requete);
+			unStat.close();
+			uneBdd.seDeconnecter();
+
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur execution requete : " + requete);
+		}
+	}
+	
+	public static Matiere selectWhereMatiere( int idmatiere)
+	{
+		
+		Matiere uneMatiere = null;
+		String requete = "select * from matiere where idmatiere = " + idmatiere + " ; ";
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
+			ResultSet unResultat = unStat.executeQuery(requete); //fetchAll de PHP
+			//extraire un résultat et construire une seule instance matiere
+			if (unResultat.next())
+			{
+				uneMatiere = new Matiere(
+						unResultat.getInt("idmatiere"), unResultat.getString("nom_matiere")
+				);		
+			}
+			unStat.close();
+			uneBdd.seDeconnecter();
+
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur execution requete : " + requete);
+		}
+		return uneMatiere;
+	}
+	
+	public static void updateMatiere(Matiere uneMatiere)
+	{
+		String requete = "update matiere set nom_matiere  = '" + uneMatiere.getNom_matiere() + "',idmatiere ='"+uneMatiere.getIdmatiere()+"' where idmatiere = " + uneMatiere.getIdmatiere() + ";";
+		
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
+			unStat.execute(requete);
+			unStat.close();
+			uneBdd.seDeconnecter();
+
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur execution requete : " + requete);
+		}
+	}
+	
+	/*****************************13/01/2022 by yanis **********************************/
+	/***************************** gestion des classes *******************/
+	
+	//********************** Insérer une classe ***************************
+	public static void insertClasse(Classe uneClasse)
+	{
+		String requete = "insert into classe values(null,'" + uneClasse.getNiveau()+"');";
+		
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
+			unStat.execute(requete);
+			unStat.close();
+			uneBdd.seDeconnecter();
+
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur execution requete : " + requete);
+		}
+	}
+	
+	//******************Afficher les classes *************************
+	
+	public static ArrayList<Classe> selectAllClasse()
+	{
+		ArrayList<Classe> lesClasses = new ArrayList<Classe>();
+		String requete = "select * from classe ; ";
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
+			ResultSet desResultats = unStat.executeQuery(requete); //fetchAll de PHP
+			//parcours des résultats ppur construire des instances de Matiere
+			while (desResultats.next())
+			{
+				Classe uneClasse = new Classe(
+						desResultats.getInt("idclasse"), desResultats.getString("niveau")
+						);
+					lesClasses.add(uneClasse);
+			}
+			unStat.close();
+			uneBdd.seDeconnecter();
+
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur execution requete : " + requete);
+		}
+		return lesClasses;
+	}
+	
+	// *******************supprimer une Classe *************************
+	
+	public static void deleteClasse (int  idclasse)
+	{
+		String requete = "delete from classe where idclasse = " + idclasse + ";";
+		
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
+			unStat.execute(requete);
+			unStat.close();
+			uneBdd.seDeconnecter();
+
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur execution requete : " + requete);
+		}
+	}
+	
+	public static Classe selectWhereClasse( int idclasse)
+	{
+		
+		Classe uneClasse = null;
+		String requete = "select * from classe where idclasse = " + idclasse + " ; ";
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
+			ResultSet unResultat = unStat.executeQuery(requete); //fetchAll de PHP
+			//extraire un résultat et construire une seule instance classe
+			if (unResultat.next())
+			{
+				uneClasse = new Classe(
+						unResultat.getInt("idclasse"), unResultat.getString("niveau")
+				);		
+			}
+			unStat.close();
+			uneBdd.seDeconnecter();
+
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur execution requete : " + requete);
+		}
+		return uneClasse;
+	}
+	
+	public static void updateClasse(Classe uneClasse)
+	{
+		String requete = "update classe set niveau  = '" + uneClasse.getNiveau() + "',idclasse ='"+uneClasse.getIdclasse()+"' where idclasse = " + uneClasse.getIdclasse() + ";";
 		
 		try {
 			uneBdd.seConnecter();

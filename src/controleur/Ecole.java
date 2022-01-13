@@ -9,6 +9,9 @@ public class Ecole {
 
 private C_Professeur unControleurProfesseur = new C_Professeur();
 private C_Etudiant unControleurEtudiant = new C_Etudiant();
+private C_Matiere unControleurMatiere = new C_Matiere();
+private C_Classe unControleurClasse = new C_Classe();
+
 
 
 public void menuGeneral ()
@@ -28,8 +31,8 @@ switch(choix)
 {
 case 1 : unControleurProfesseur.menuProfesseur(); break;
 case 2 : unControleurEtudiant.menuEtudiant();break;
-case 3 : break;
-case 4 : break;
+case 3 : unControleurClasse.menuClasse(); break;
+case 4 : unControleurMatiere.menuMatiere(); break;
 case 5 : break;
 case 6 : break;
 }

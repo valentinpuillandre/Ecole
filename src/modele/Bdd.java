@@ -26,7 +26,9 @@ public Bdd(String serveur, String bdd, String user, String mdp)
 
 public void seConnecter ()
 {
+	
 	String url = "jdbc:mysql://" + this.serveur +"/" +this.bdd;
+
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
 	}
@@ -40,7 +42,7 @@ public void seConnecter ()
 	}
 	catch(SQLException exp)
 	{
-		System.out.println("Erreur de connexion à URL : " + url);
+		System.out.println("Erreur de connexion ï¿½ URL : " + url);
 	}
 }
 public void seDeconnecter ()
