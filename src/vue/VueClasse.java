@@ -8,7 +8,7 @@ public class VueClasse {
 	{
 		String niveau;
 		
-		System.out.println("Donner le nom de la classe : ");
+		System.out.println("Donner le numéro de la classe : ");
 		niveau = Console.saisirString();
 	
 		Classe uneClasse = new Classe(0,niveau);
@@ -33,7 +33,7 @@ public class VueClasse {
 	public static int saisirIdClasse ()
 	{
 		int id;
-		System.out.println("Donner un id Classe : ");
+		System.out.println("Choisissez le numéro de la classe : ");
 		id = Console.saisirInt();
 		return id;
 	}

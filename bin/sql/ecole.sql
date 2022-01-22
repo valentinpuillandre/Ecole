@@ -82,3 +82,8 @@ insert into donner_cours values (1,1);
 insert into donner_cours values (2,2);
 insert into donner_cours values (3,3);
 insert into donner_cours values (4,4);
+
+create or replace view etudiantparclasse as (
+ select e.nom_etudiant,e.prenom_etudiant,c.niveau,c.idclasse
+  from etudiant e,classe c
+    where e.idclasse = c.idclasse);

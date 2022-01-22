@@ -10,6 +10,7 @@ import controleur.Classe;
 import controleur.Etudiant;
 import controleur.Matiere;
 import controleur.Professeur;
+import controleur.TableauBord;
 
 
 public class Modele {
@@ -492,4 +493,59 @@ public class Modele {
 			System.out.println("Erreur execution requete : " + requete);
 		}
 	}
+	//********************************TABLEAU DE BORD**************************************************
+		public static ArrayList<TableauBord> selectAllTableauBord ()
+		{
+			ArrayList<TableauBord> lesTableauBords = new ArrayList<TableauBord>();
+			String requete ;
+			
+			requete = "select * from etudiantparclasse ; ";
+			
+			
+			try {
+				uneBdd.seConnecter();
+				Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
+				ResultSet desResultats = unStat.executeQuery(requete); //fetchAll de PHP
+				//parcours des résultats ppur construire des instances de clients
+				while (desResultats.next())
+				{
+					TableauBord unTableauBord= new TableauBord(desResultats.getInt("idclasse"),
+				desResultats.getString("nom_etudiant"), desResultats.getString("prenom_etudiant"),
+				desResultats.getString("niveau"));
+					lesTableauBords.add(unTableauBord);
+				}
+				unStat.close();
+				uneBdd.seDeconnecter();
+
+			}
+			catch(SQLException exp)
+			{
+				System.out.println("Erreur execution requete : " + requete);
+			}
+			return lesTableauBords;
+		}
+		
+//==============================================COUNT=========================================
+		public static int count(String table) {
+			int nb = 0;
+			String requete = "select count(*) as nb from " + table + ";";
+			
+			try {
+				uneBdd.seConnecter();
+				Statement unStat = (Statement) uneBdd.getMaConnexion().createStatement();//curseur 
+				ResultSet unResultat = unStat.executeQuery(requete);
+				if(unResultat.next())
+				{
+					nb = unResultat.getInt("nb");
+				}
+				unStat.close();
+				uneBdd.seDeconnecter();
+			}
+			catch(SQLException exp)
+			{
+				System.out.println("Erreur execution requete : " + requete);
+			}
+			return nb;
+		}
+		
 }

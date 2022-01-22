@@ -4,17 +4,61 @@ import java.util.ArrayList;
 
 import modele.Modele;
 import vue.Console;
+import vue.VueClasse;
 import vue.VueEtudiant;
 
 public class C_Etudiant {
 	
+	private int idClasseChoisi = 0 ; 
+	
+	public boolean verifierId (int idClasse)
+	{
+		ArrayList<Classe> lesClasses = Modele.selectAllClasse();
+		for(Classe uneClasse : lesClasses)
+		{
+			if (uneClasse.getIdclasse() == idClasse)
+		{
+		return true;
+		}
+		}
+		return false;
+		}
+	public void saisirIdClasse()
+		{
+		ArrayList<Classe> lesClasses = Modele.selectAllClasse();
+		do {
+		String chaine = "________LISTE DES CLASSES________ \n\n";
+		for(Classe uneClasse : lesClasses)
+			{
+			chaine+= uneClasse.getIdclasse()+" : "+uneClasse.getIdclasse()+" "+uneClasse.getNiveau()+";\n";
+			}
+		chaine += "\n_________FIN DES CLASSES________\n";
+		System.out.println(chaine);
+		this.idClasseChoisi = VueClasse.saisirIdClasse();
+		}while (! verifierId(this.idClasseChoisi ));
+		Classe uneClasse = Modele.selectWhereClasse(this.idClasseChoisi);
+		if(uneClasse == null)
+		{
+			System.out.println("Aucune classe avec cet ID");
+			this.idClasseChoisi = 0;
+		}
+		else
+		{
+			System.out.println("Vous allez gérer les étudiants d'une classe :");
+			VueClasse.afficher(uneClasse);
+		}
+	}
+	
 	public void ajouterEtudiant ()
 	{
+		this.saisirIdClasse();
+		if(this.idClasseChoisi !=0)
+		{
 		//on appelle la vue pour saisir un Etudiant
 		Etudiant unEtudiant = VueEtudiant.saisirEtudiant();
-		
 		//on appelle le modèle pour insérer le Etudiant
 		Modele.insertEtudiant(unEtudiant);
+		}
 	}
 	
 	public void listerEtudiants ()
