@@ -27,12 +27,12 @@ public void stats ()
 	nbProfesseurs = 	Modele.count("professeur");
 	
 	
-	System.out.println("____________Statistiques de l'école_______________");
+	System.out.println("______________Statistiques de l'école_______________\n");
 	System.out.println("Nombre de classes     : " + nbClasses);
 	System.out.println("Nombre d'étudiants    : " +nbEtudiants);
 	System.out.println("Nombre de matières    : " + nbMatieres);
 	System.out.println("Nombre de professeurs : " +nbProfesseurs);
-	System.out.println("________________________________________");
+	System.out.println("_____________________________________________________\n");
 	
 	
 }
