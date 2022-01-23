@@ -5,18 +5,63 @@ package controleur;
 import java.util.ArrayList;
 import modele.Modele;
 import vue.Console;
+import vue.VueClasse;
+import vue.VueMatiere;
 import vue.VueProfesseur;
 
 
 public class C_Professeur {
 
+private int idMatiereChoisi = 0 ; 
+	
+	public boolean verifierId (int idMatiere)
+	{
+		ArrayList<Matiere> lesMatieres = Modele.selectAllMatiere();
+		for(Matiere uneMatiere : lesMatieres)
+		{
+			if (uneMatiere.getIdmatiere() == idMatiere)
+		{
+		return true;
+		}
+		}
+		return false;
+		}
+	public void saisirIdMatiere()
+		{
+		ArrayList<Matiere> lesMatieres = Modele.selectAllMatiere();
+		do {
+		String chaine = "________Liste des Matieres________ \n\n";
+		for(Matiere uneMatiere : lesMatieres)
+			{
+			chaine+= uneMatiere.getIdmatiere()+" : "+uneMatiere.getNom_matiere()+";\n";
+			}
+		chaine += "\n_________Fin des Matières________\n";
+		System.out.println(chaine);
+		this.idMatiereChoisi = VueMatiere.saisirIdMatiere();
+		}while (! verifierId(this.idMatiereChoisi ));
+		Matiere uneMatiere = Modele.selectWhereMatiere(this.idMatiereChoisi);
+		if(uneMatiere == null)
+		{
+			System.out.println("Aucune matière avec cet ID");
+			this.idMatiereChoisi = 0;
+		}
+		else
+		{
+			System.out.println("Vous allez gérer les matières des professeurs :");
+			VueMatiere.afficher(uneMatiere);
+		}
+	}
+	
 	public void ajouterProfesseur ()
 	{
+		this.saisirIdMatiere();
+		if(this.idMatiereChoisi != 0) {
 		//on appelle la vue pour saisir un Professeur
 		Professeur unProfesseur = VueProfesseur.saisirProfesseur();
 		
 		//on appelle le modèle pour insérer le Professeur
 		Modele.insertProfesseur(unProfesseur);
+		}
 	}
 	public void listerProfesseurs ()
 	{

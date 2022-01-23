@@ -21,6 +21,7 @@ public class Modele {
 	//********************** Insérer un étudiant ***************************
 	public static void insertEtudiant(Etudiant unEtudiant)
 	{
+		
 		String requete = "insert into etudiant values(null,'" + unEtudiant.getNom_etudiant() + "','" +unEtudiant.getPrenom_etudiant()
 		+"','"+unEtudiant.getAdresse_etudiant() + "','"+ unEtudiant.getEmail_etudiant() + "','" + unEtudiant.getTel_etudiant()+"','" 
 				+unEtudiant.getIdclasse()+"');";
@@ -117,7 +118,7 @@ public class Modele {
 			System.out.println("Erreur execution requete : " + requete);
 		}
 	}
-	 
+	//***********************Mettre à jour un étudiant
 	public static void updateEtudiant(Etudiant unEtudiant)
 	{
 	String requete = "update etudiant set nom_etudiant  = '" + unEtudiant.getNom_etudiant() + "', prenom_etudiant = '" +unEtudiant.getPrenom_etudiant()
